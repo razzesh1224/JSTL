@@ -1,0 +1,48 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="razz"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>Print numbers 1 - 10</h2>
+<razz:forEach var="i" begin="1" end="10">
+	${i}
+</razz:forEach>
+
+<h2>Print the tokens in the given items based on delimiter</h2>
+<ul>
+<razz:forTokens var="name" items="jdbc:oracle:thin:@locahost:1521:XE" delims=":" >
+	<li>${name}</li>
+</razz:forTokens>
+</ul>
+
+<h2>Prints request header fields and it values in a tabular format</h2>
+<table border="1">
+<razz:forEach var="hname" items="<%=request.getHeaderNames() %>">
+	<tr><th align="left">${hname }</th>
+		<td>${header[hname] }</td> <!--   header is a EL object which gets the value for hname attribute -->
+	</tr>
+</razz:forEach>
+</table>
+
+<h2>Prints even odd numbers from 2 - 100</h2>
+Even Numbers:<razz:forEach var="n" begin="1" end="100">
+<razz:if test="${n%2==0 }">
+	${n }
+</razz:if>
+ </razz:forEach>
+ </p>
+Odd Number:<razz:forEach var="n" begin="1" end="100">
+<razz:if test="${n%2!=0 }">
+	${n }
+</razz:if>
+ </razz:forEach>
+
+
+
+</body>
+</html>
